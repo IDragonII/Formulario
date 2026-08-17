@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encuesta de Evaluación de Competencias Digitales — UNA Puno</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="header">
+    <h1>Encuesta de Evaluación de Competencias Digitales</h1>
+    <p>Universidad Nacional del Altiplano — Oficina de Tecnologías de la Información</p>
+  </div>
+
+  <div class="container">
+
+    <form id="encuestaForm">
+
+    <!-- ========== SECCIÓN 1: DATOS GENERALES ========== -->
+    <div class="seccion">
+      <h2>Sección 1. Datos generales</h2>
+      <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:1rem;">
+        Marque o complete según corresponda. No registre su nombre ni documento de identidad.
+      </p>
+
+      <!-- 1.1 Comunes -->
+      <div class="field-group">
+        <label class="group-label" for="estamento">Estamento:</label>
+        <select id="estamento" style="padding:0.5rem;border:1px solid var(--border);border-radius:6px;width:100%;">
+          <option value="">-- Seleccione su estamento --</option>
+          <option value="administrativo">Administrativo</option>
+          <option value="docente">Docente</option>
+          <option value="estudiante">Estudiante</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label class="group-label">Sexo:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="sexo" value="Femenino"> Femenino</label>
+          <label><input type="radio" name="sexo" value="Masculino"> Masculino</label>
+          <label><input type="radio" name="sexo" value="Prefiero no indicar"> Prefiero no indicar</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="group-label">Rango de edad:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="rango_edad" value="<24"> &lt;24</label>
+          <label><input type="radio" name="rango_edad" value="25-34"> 25-34</label>
+          <label><input type="radio" name="rango_edad" value="35-44"> 35-44</label>
+          <label><input type="radio" name="rango_edad" value="45-54"> 45-54</label>
+          <label><input type="radio" name="rango_edad" value="55-64"> 55-64</label>
+          <label><input type="radio" name="rango_edad" value=">65"> &gt;65</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="group-label" for="dependencia">Dependencia / Facultad / Escuela profesional:</label>
+        <input type="text" id="dependencia" placeholder="Escriba su respuesta">
+      </div>
+
+      <div class="field-group">
+        <label class="group-label">Frecuencia de uso de IA generativa (ChatGPT, Gemini, etc.):</label>
+        <div class="radio-group">
+          <label><input type="radio" name="frecuencia_ia" value="Diaria"> Diaria</label>
+          <label><input type="radio" name="frecuencia_ia" value="Varias veces/semana"> Varias veces/semana</label>
+          <label><input type="radio" name="frecuencia_ia" value="Ocasional"> Ocasional</label>
+          <label><input type="radio" name="frecuencia_ia" value="Rara vez"> Rara vez</label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="group-label">Dispositivo principal de trabajo/estudio:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="dispositivo_principal" value="PC escritorio"> PC escritorio</label>
+          <label><input type="radio" name="dispositivo_principal" value="Laptop"> Laptop</label>
+          <label><input type="radio" name="dispositivo_principal" value="Tablet"> Tablet</label>
+          <label><input type="radio" name="dispositivo_principal" value="Smartphone"> Smartphone</label>
+        </div>
+      </div>
+
+      <!-- 1.2 Admin/Docente -->
+      <div id="adminDocenteFields" class="hidden">
+        <h3 style="margin-top:1.5rem;border-top:1px solid var(--border);padding-top:1rem;">
+          Datos específicos del personal administrativo y docente
+        </h3>
+
+        <div class="field-group">
+          <label class="group-label">Condición laboral:</label>
+          <div class="radio-group">
+            <label><input type="radio" name="condicion_laboral" value="Nombrado"> Nombrado</label>
+            <label><input type="radio" name="condicion_laboral" value="Contratado"> Contratado</label>
+            <label><input type="radio" name="condicion_laboral" value="CAS"> CAS</label>
+            <label><input type="radio" name="condicion_laboral" value="Locación de servicios"> Locación de servicios</label>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="group-label">Años de servicio en la UNA Puno:</label>
+          <div class="radio-group">
+            <label><input type="radio" name="anios_servicio" value="<1"> &lt;1</label>
+            <label><input type="radio" name="anios_servicio" value="1-5"> 1-5</label>
+            <label><input type="radio" name="anios_servicio" value="6-10"> 6-10</label>
+            <label><input type="radio" name="anios_servicio" value="11-20"> 11-20</label>
+            <label><input type="radio" name="anios_servicio" value=">20"> &gt;20</label>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="group-label">Capacitación digital recibida en los últimos 12 meses:</label>
+          <div class="radio-group">
+            <label><input type="radio" name="capacitacion_recibida" value="Ninguna"> Ninguna</label>
+            <label><input type="radio" name="capacitacion_recibida" value="1-2"> 1-2</label>
+            <label><input type="radio" name="capacitacion_recibida" value="3-5"> 3-5</label>
+            <label><input type="radio" name="capacitacion_recibida" value=">5"> &gt;5</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1.3 Estudiantes -->
+      <div id="estudianteFields" class="hidden">
+        <h3 style="margin-top:1.5rem;border-top:1px solid var(--border);padding-top:1rem;">
+          Datos específicos de estudiantes
+        </h3>
+
+        <div class="field-group">
+          <label class="group-label">Nivel:</label>
+          <div class="radio-group">
+            <label><input type="radio" name="nivel_estudiante" value="Pregrado"> Pregrado</label>
+            <label><input type="radio" name="nivel_estudiante" value="Posgrado"> Posgrado</label>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="group-label">Año / ciclo de estudios:</label>
+          <div class="radio-group">
+            <label><input type="radio" name="anio_ciclo" value="1°-2°"> 1°-2°</label>
+            <label><input type="radio" name="anio_ciclo" value="3°-4°"> 3°-4°</label>
+            <label><input type="radio" name="anio_ciclo" value="5°-6°"> 5°-6°</label>
+            <label><input type="radio" name="anio_ciclo" value="7°-8°"> 7°-8°</label>
+            <label><input type="radio" name="anio_ciclo" value="9° a más"> 9° a más</label>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="group-label">Modalidad de conectividad a internet principal:</label>
+          <div class="radio-group">
+            <label><input type="radio" name="modalidad_conectividad" value="Hogar fija"> Hogar fija</label>
+            <label><input type="radio" name="modalidad_conectividad" value="Datos móviles"> Datos móviles</label>
+            <label><input type="radio" name="modalidad_conectividad" value="Campus/UNA"> Campus/UNA</label>
+            <label><input type="radio" name="modalidad_conectividad" value="Cabina/otro"> Cabina/otro</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== SECCIÓN 2: INSTRUMENTO ========== -->
+    <div class="seccion" id="instrumentoSection" style="display:none;"></div>
+
+    <!-- ========== SECCIÓN 3: TRANSVERSALES (T1-T3, todos los estamentos) ========== -->
+    <div class="seccion" id="transversalesSection" style="display:none;"></div>
+
+    <!-- ========== SECCIÓN 5: NECESIDADES DE CAPACITACIÓN ========== -->
+    <div class="seccion" id="t5Section" style="display:none;">
+      <h2>Sección 5. Necesidades de capacitación</h2>
+      <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:0.8rem;">
+        Seleccione hasta 5 temas en los que desearía capacitarse.
+      </p>
+      <div id="t5Counter" class="t5-counter">0/5 seleccionados</div>
+      <div id="t5Options"></div>
+    </div>
+
+    <!-- ========== SECCIÓN 6: COMENTARIOS ========== -->
+    <div class="seccion" id="comentariosSection" style="display:none;">
+      <h2>Sección 6. Comentarios y sugerencias</h2>
+      <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:0.8rem;">
+        (Opcional, abierto)
+      </p>
+      <textarea id="comentarios" placeholder="Comentarios y sugerencias generales sobre las necesidades de capacitación o el formulario:" rows="4"></textarea>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-section">
+      <button type="submit" id="submitBtn" style="display:none;">Enviar encuesta</button>
+    </div>
+
+    </form>
+
+    <!-- Success message -->
+    <div class="seccion" id="successMessage" style="display:none;">
+      <div class="check-icon">&#10003;</div>
+      <h2>¡Gracias por su participación!</h2>
+      <p>Su respuesta ha sido registrada exitosamente.</p>
+      <p style="margin-top:0.5rem;font-size:0.85rem;color:var(--text-light);">
+        Oficina de Tecnologías de la Información (OTI) — UNA Puno.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

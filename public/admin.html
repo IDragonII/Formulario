@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Encuesta Competencias Digitales</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- ===== LOGIN ===== -->
+  <div id="loginView" class="login-container">
+    <div class="login-card">
+      <h1>SUGE</h1>
+      <p>Panel de administración</p>
+      <form id="loginForm">
+        <input type="email" id="loginEmail" placeholder="Correo electrónico" required>
+        <input type="password" id="loginPass" placeholder="Contraseña" required>
+        <button type="submit">Ingresar</button>
+        <div id="loginError" class="error-msg"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== DASHBOARD ===== -->
+  <div id="dashboardView" class="hidden">
+
+    <header class="admin-header">
+      <div class="header-left">
+        <h1>SUGE — Panel de Resultados</h1>
+      </div>
+      <div class="header-right">
+        <span id="userEmail"></span>
+        <button id="logoutBtn" class="btn-sm">Cerrar sesión</button>
+      </div>
+    </header>
+
+    <nav class="admin-nav">
+      <button class="nav-btn active" data-tab="resumen">Resumen</button>
+      <button class="nav-btn" data-tab="reportes">Reportes</button>
+      <button class="nav-btn" data-tab="respuestas">Respuestas</button>
+      <button class="nav-btn" data-tab="promedios">Promedios</button>
+    </nav>
+
+    <main class="admin-main">
+
+      <!-- RESUMEN -->
+      <section id="tab-resumen" class="tab-content active">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number" id="statTotal">-</div>
+            <div class="stat-label">Total respuestas</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="statAdmin">-</div>
+            <div class="stat-label">Administrativos</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="statDocente">-</div>
+            <div class="stat-label">Docentes</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="statEstudiante">-</div>
+            <div class="stat-label">Estudiantes</div>
+          </div>
+        </div>
+
+        <div class="resumen-split">
+          <div class="card resumen-half">
+            <h3>Distribución por estamento</h3>
+            <div id="dashEstamento" class="chart-container"></div>
+          </div>
+          <div class="card resumen-half">
+            <h3>Promedio general</h3>
+            <div id="dashPromGeneral" class="chart-container"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REPORTES -->
+      <section id="tab-reportes" class="tab-content">
+        <div class="reports-toolbar">
+          <div class="reports-toolbar-left">
+            <button id="btnDownloadExcel" class="btn-download">
+              <span class="btn-icon">📊</span> Descargar Reporte Excel
+            </button>
+          </div>
+          <div class="reporte-select-wrap">
+            <label class="filter-label">Ver reporte de:</label>
+            <select id="reporteVariable">
+              <option value="">— Seleccionar —</option>
+              <option value="estamento">Distribución por estamento</option>
+              <option value="sexo">Distribución por sexo</option>
+              <option value="edad">Rango de edad</option>
+              <option value="frecuencia_ia">Frecuencia de uso de IA</option>
+              <option value="dispositivo">Dispositivo principal</option>
+              <option value="dependencia">Dependencia / facultad</option>
+              <option value="prom_instrumento">Promedio por instrumento</option>
+              <option value="prom_area">Promedio por competencia</option>
+              <option value="prom_estamento">Promedio por estamento</option>
+              <option value="capacitacion">Necesidades de capacitación</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="reporteView" class="reporte-view hidden">
+          <div class="card reporte-chart">
+            <h3 id="reporteTitle"></h3>
+            <div id="reporteChart"></div>
+          </div>
+          <div class="card reporte-table">
+            <h3>Detalle de datos</h3>
+            <div id="reporteTable"></div>
+          </div>
+        </div>
+        <p id="reportePlaceholder" class="reporte-placeholder">Seleccione una variable del menú superior</p>
+      </section>
+
+      <!-- RESPUESTAS -->
+      <section id="tab-respuestas" class="tab-content">
+        <div class="toolbar">
+          <select id="filterEstamento">
+            <option value="">Todos los estamentos</option>
+            <option value="administrativo">Administrativo</option>
+            <option value="docente">Docente</option>
+            <option value="estudiante">Estudiante</option>
+          </select>
+          <span id="respCount"></span>
+        </div>
+        <div class="table-wrap">
+          <table id="respTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Estamento</th>
+                <th>Sexo</th>
+                <th>Edad</th>
+                <th>Dependencia</th>
+                <th>Enviado</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="respBody"></tbody>
+          </table>
+        </div>
+        <div class="pagination">
+          <button id="prevPage" class="btn-sm">← Anterior</button>
+          <span id="pageInfo"></span>
+          <button id="nextPage" class="btn-sm">Siguiente →</button>
+        </div>
+      </section>
+
+      <!-- PROMEDIOS -->
+      <section id="tab-promedios" class="tab-content">
+        <div class="toolbar">
+          <select id="filterInstrumento">
+            <option value="">Todos los instrumentos</option>
+            <option value="A">A — Administrativo</option>
+            <option value="B">B — Docentes</option>
+            <option value="C">C — Estudiantes</option>
+            <option value="T">T — Transversales</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table id="promTable">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Área</th>
+                <th>Ítem</th>
+                <th>Promedio</th>
+                <th>Respondieron</th>
+              </tr>
+            </thead>
+            <tbody id="promBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ===== DETALLE MODAL ===== -->
+  <div id="modalOverlay" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Detalle de respuesta #<span id="modalId"></span></h2>
+        <button id="modalClose" class="btn-sm">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
